@@ -1,0 +1,41 @@
+import board
+import neopixel
+from RPi.GPIO import GPIO
+
+a = 0
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(25, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(8, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(7, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(1, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+
+pixels = neopixel.NeoPixel(board.D18, 4)
+
+while True:
+    if GPIO.input(25)==1:
+        pixels[0] = (255, 255, 255)
+        pixels.show()
+        a = 2
+        while a > 1:
+            if GPIO.input(8)==1:
+                pixels[1] = (255, 255, 255)
+                pixels.show()
+                a = 3
+                while a > 2:
+                    if GPIO.input(7)==1:
+                        pixels[2] = (255, 255, 255)
+                        pixels.show()
+                        while True:
+                            if GPIO.input(1)==1:
+                                pixels[3] = (255, 255, 255)
+                                pixels.show()
+                                while True:
+                                    a = 4
+                    elif GPIO.input(1)==1:
+                        a = 0
+            elif GPIO.input(7)==1 or GPIO.input(1)==1:
+                a = 0
+    elif GPIO.input(8)==1 or GPIO.input(7)==1 or GPIO.input(1)==1 or a==$
+
+pixels.show()
